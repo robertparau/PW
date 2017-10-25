@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <!-- Template by Quackit.com -->
 <!-- Images by various sources under the Creative Commons CC0 license and/or the Creative Commons Zero license. 
-Although you can use them, for a more unique website, replace these images with your own. -->
+Although you can use them, for a more unique website, replace these images with your own. 
+#098cc8 - nice shade of blue
+-->
 <html lang="en">
 
 <head>
@@ -55,6 +57,13 @@ Although you can use them, for a more unique website, replace these images with 
                     <li class="active">
                         <a href="#">Home</a>
                     </li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="about-us">
+							<li><a href="register.php">Register</a></li>
+							<li><a href="#">Log in</a></li>
+						</ul>
+					</li>
                     <li>
                         <a href="#">Products</a>
                     </li>
