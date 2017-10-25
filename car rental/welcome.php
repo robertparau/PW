@@ -1,10 +1,11 @@
-<link rel="stylesheet" href="css/register.css">
+<body>
 
-<?php session_start(); ?>
+<div>
+  <p align="center">User registered succesfully</p>
+</div>
 
-<div class="body content">
-	<div class="welcome">
-		<div class="alert alert-success"><?=$_SESSION['message'] ?></div>
-		Welcome <span class="user"><?=$_SESSION['username'] ?></span>
-
+</body>
+</html>
+	
+<meta http-equiv="refresh" content="3;url=http://localhost/pw/RentACar/" />
 		
