@@ -1,6 +1,8 @@
 <?php
+
 session_start();
 $_SESSION['message'] = '';
+
 
 $mysqli = new mysqli("localhost", "root", "", "acc");
 
@@ -13,16 +15,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $email = $mysqli->real_escape_string($_POST['email']);
         $phone = $mysqli->real_escape_string($_POST['phone']);
 
-        //md5 hash password for security
-        $password = md5($_POST['password']);
+        //hash password for security
+        $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
 		
-		$_SESSION['username'] = $username;
+		$_SESSION['name'] = $username;
 		$sql = "INSERT INTO users (username, email, password, phone) " . "VALUES ('$username', '$email', '$password', '$phone')";
 		
 		if ($mysqli->query($sql) === true)
 		{
-			$_SESSION[ 'message' ] = "Registration succesful! Added $username to the database!";
-			
 			header( "location: welcome.php" );
 		}
 		else
