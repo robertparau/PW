@@ -4,7 +4,7 @@ session_start();
 $_SESSION['message'] = '';
 
 
-	$conn = new mysqli("localhost", "root", "", "acc");
+	$conn = new mysqli("localhost", "root", "", "rental");
 
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
 	$password = mysqli_real_escape_string($conn, $_POST['password']);

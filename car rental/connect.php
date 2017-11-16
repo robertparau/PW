@@ -4,7 +4,7 @@ session_start();
 $_SESSION['message'] = '';
 
 
-$mysqli = new mysqli("localhost", "root", "", "acc");
+$mysqli = new mysqli("localhost", "root", "", "rental");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 {
