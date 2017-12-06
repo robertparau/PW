@@ -10,13 +10,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		$car_name = $mysqli->real_escape_string($_POST['c_name']);
         $car_fe = $mysqli->real_escape_string($_POST['c_fe']);
         $car_seats = $mysqli->real_escape_string($_POST['c_seats']);
+        $car_amount = $mysqli->real_escape_string($_POST['c_amount']);
         $avatar_path = $mysqli->real_escape_string('images/'.$_FILES['c_pic']['name']);
 
         if (preg_match("!image!",$_FILES['c_pic']['type'])) {
 
         	if (copy($_FILES['c_pic']['tmp_name'], $avatar_path)){
 
-				$sql = "INSERT INTO cars (Car_name, Car_FE, Car_seats, Car_pic) " . "VALUES ('$car_name', '$car_fe', '$car_seats', '$avatar_path')";
+				$sql = "INSERT INTO cars (Car_name, Car_FE, Car_seats, Car_pic, amount) " . "VALUES ('$car_name', '$car_fe', '$car_seats', '$avatar_path', '$car_amount')";
 		
 				if ($mysqli->query($sql) === true)
 				{

@@ -2,6 +2,7 @@
 
 session_start();
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,13 +13,13 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Rental</title>
+    <title>Rent a vehicle</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
-    <link href="css/rent.css" rel="stylesheet">
+    <link href="css/rental.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,7 +29,7 @@ session_start();
 
     <!-- Custom Fonts from Google -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    
+    <link href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light" rel="stylesheet" type="text/css"/> 
 </head>
 <body>
 
@@ -39,35 +40,41 @@ session_start();
 
     <header>
         <div class="header-content">
-        <div>
             <?php
                 if(isset($_SESSION['u_id'])) {
-                    if($_SESSION['u_id'] == 1)  {
-                        echo '<a href="addcar.php" class="btn btn-primary btn-lg">Add New Car</a>';
+                    if($_SESSION['u_cid'] == 0) {
+                        if($_SESSION['u_id'] == 1)  {
+                            echo '<a href="listcars.php" class="btn btn-primary btn-lg">List users</a>';
+                        }
+                        $mysqli = new mysqli("localhost", "root", "", "rental");
+                        $sql = "SELECT Car_name ,Car_id FROM cars WHERE amount > 0";
+                        $result = $mysqli->query( $sql );
+                        echo"                    
+                        <div class='module'>
+                        <h1>Rent a car</h1>
+                            <form class='form' action='rentCar.php' method='post' enctype='multipart/form-data' autocomplete='off'>
+                                <div class='alert alert-error'>".$_SESSION['message']."</div>
+                                <input type='text' placeholder='Number of Days' name='days' required /><br /><br />
+                                <select name='cars'>
+                                    <option value='-1' selected='selected'>Choose a car</option>
+                        ";
+                                while( $row = $result->fetch_assoc() ){
+                                    echo "<option value='".$row['Car_id']."'>".$row['Car_name']."</option>";
+                                }
+                        echo"  </select>
+                                <input type='submit' value='Confirm' name='register' class='btn btn-primary btn-lg' />
+                            </form>
+                        </div>";
+                    }
+                    else{
+                        echo "You can only rent one car per account";
                     }
                 }
+                else {
+                    echo"Please <a href='login.php'>log in</a> or <a href='register.php'>create an account</a> to rent cars";
+                }
             ?>
-
-
-        </div>
-            <?php
-            $mysqli = new mysqli("localhost", "root", "", "rental");
-            $sql = "SELECT Car_name, Car_FE, Car_seats, Car_pic FROM cars";
-            $result = $mysqli->query( $sql );
-            while( $row = $result->fetch_assoc() ){
-
-                echo "<div class='userlist'>
-                <span>".$row['Car_name']."</span><br />
-                <div class='userlist'><span>Locuri: ".$row['Car_seats']."</span><br />
-                <div class='userlist'><span>Consum: ".$row['Car_FE']."</span><br />
-                <img src='".$row['Car_pic']."'>
-                </div>";
-
-            }
-            ?>
-            
-
-
+                   
         </div>
     </header>
 

@@ -26,6 +26,7 @@ $_SESSION['message'] = '';
 					$_SESSION['u_name'] =$row['username'];
 					$_SESSION['u_email'] =$row['email'];
 					$_SESSION['u_phone'] =$row['phone'];
+					$_SESSION['u_cid'] =$row['Car_id']; 
 					header("location: success.php");
 					exit();
 				} else {

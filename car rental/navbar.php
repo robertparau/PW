@@ -24,13 +24,16 @@
                     <li>
                         <a href="index.php">Home</a>
                     </li>
-                    <li>
-                        <a href="#">Products</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="about-us">
+                            <li><a href="carGallery.php">Cars</a></li>
+                        </ul>
                     </li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="about-us">
-							<li><a href="Rent.php">Rental</a></li>
+							<li><a href="rent.php">Rental</a></li>
 							<li><a href="#">Plan a trip</a></li>
 							<li><a href="#">Demo a car</a></li>
 						</ul>

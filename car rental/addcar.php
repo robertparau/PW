@@ -22,6 +22,7 @@ include_once 'connect2.php'
       <input type="text" placeholder="Car Name" name="c_name" required />
       <input type="text" placeholder="Car FE" name="c_fe" required />
       <input type="text" placeholder="Car Seats" name="c_seats" required />
+      <input type="text" placeholder="Amount of cars" name="c_amount" required />
       <div class="avatar"><label>Add car picture: </label><input type="file" name="c_pic" accept="image/*" required /></div>
       <input type="submit" value="Add car" name="register" class="btn btn-block btn-primary" />
     </form>

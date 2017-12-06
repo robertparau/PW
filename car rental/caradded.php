@@ -11,5 +11,5 @@
     <h1>Car added succesfully</h1>
   </div>
 </div>
-<meta http-equiv="refresh" content="1;url=http://localhost/pw/RentACar/Rent.php" />
+<meta http-equiv="refresh" content="1;url=http://localhost/pw/RentACar/carGallery.php" />
 		
