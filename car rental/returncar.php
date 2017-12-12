@@ -42,15 +42,11 @@ $_SESSION['message'] = '';
 
       <div class="body-content">
         <div class="module">
-          <h1>Add a new car</h1>
-          <form class="form" action="connect2.php" method="post" enctype="multipart/form-data" autocomplete="off">
+          <h1>Return a car by User id</h1>
+          <form class="form" action="return.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <div class="alert alert-error"><?=$_SESSION['message'] ?></div>
-            <input type="text" placeholder="Car Name" name="c_name" required />
-            <input type="text" placeholder="Car FE" name="c_fe" required />
-            <input type="text" placeholder="Car Seats" name="c_seats" required />
-            <input type="text" placeholder="Amount of cars" name="c_amount" required />
-            <div class="avatar"><label>Add car picture: </label><input type="file" name="c_pic" accept="image/*" required /></div>
-            <input type="submit" value="Add car" name="register" class="btn btn-block btn-primary" />
+            <input type="text" placeholder="User ID" name="Uid" required />
+            <input type="submit" value="Mark car as returned" name="register" class="btn btn-block btn-primary" />
           </form>
         </div>
       </div>

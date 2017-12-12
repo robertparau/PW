@@ -18,12 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         //hash password for security
         $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
 		
-		$_SESSION['name'] = $username;
 		$sql = "INSERT INTO users (username, email, password, phone) " . "VALUES ('$username', '$email', '$password', '$phone')";
 		
 		if ($mysqli->query($sql) === true)
 		{
-			header( "location: welcome.php" );
+			include_once 'dbl.php';
+			exit();
 		}
 		else
 		{

@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-
-
+include_once('rentCar.php');
+$_SESSION['message'] = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,32 +42,53 @@ session_start();
         <div class="header-content">
             <?php
                 if(isset($_SESSION['u_id'])) {
-                    if($_SESSION['u_cid'] == 0) {
-                        if($_SESSION['u_id'] == 1)  {
-                            echo '<a href="listcars.php" class="btn btn-primary btn-lg">List users</a>';
+                    $mysqli = new mysqli("localhost", "root", "", "rental");
+                    if($_SESSION['u_cid'] == 0) 
+                    {
+                        if($_SESSION['u_id'] == 1)  
+                        {
+                            echo '<a href="listusers.php" class="btn btn-primary btn-lg">List users</a>';
                         }
-                        $mysqli = new mysqli("localhost", "root", "", "rental");
                         $sql = "SELECT Car_name ,Car_id FROM cars WHERE amount > 0";
                         $result = $mysqli->query( $sql );
                         echo"                    
                         <div class='module'>
                         <h1>Rent a car</h1>
-                            <form class='form' action='rentCar.php' method='post' enctype='multipart/form-data' autocomplete='off'>
+                            <form class='form' action='rent.php' method='post' enctype='multipart/form-data' autocomplete='off'>
                                 <div class='alert alert-error'>".$_SESSION['message']."</div>
-                                <input type='text' placeholder='Number of Days' name='days' required /><br /><br />
                                 <select name='cars'>
                                     <option value='-1' selected='selected'>Choose a car</option>
                         ";
-                                while( $row = $result->fetch_assoc() ){
-                                    echo "<option value='".$row['Car_id']."'>".$row['Car_name']."</option>";
-                                }
+                        while( $row = $result->fetch_assoc() )
+                        {
+                            echo "<option value='".$row['Car_id']."'>".$row['Car_name']."</option>";
+                        }
                         echo"  </select>
+                        <input type='text' placeholder='Number of Days' name='days' required /><br /><br />
                                 <input type='submit' value='Confirm' name='register' class='btn btn-primary btn-lg' />
                             </form>
                         </div>";
                     }
-                    else{
-                        echo "You can only rent one car per account";
+                    else
+                    {
+                        echo "
+                        <div class='alert alert-error'>Sorry, but you can only rent one car per account. For returning cars please contact the admin. Your current car is:</div>";
+                        $cid=$_SESSION['u_cid'];
+
+                        $sql = "SELECT Car_name, Car_FE, Car_seats, Car_pic, amount FROM cars WHERE Car_id = $cid";
+                        $result = $mysqli->query( $sql );
+                        while( $row = $result->fetch_assoc() )
+                        {
+                            echo "<div class='gallery'>
+                            <a target='_blank'>
+                            <img src='".$row['Car_pic']."' alt='car image' width='300' height='200'>
+                            </a>
+                            <p>".$row['Car_name']."</p>
+                            <p>Days left:".$_SESSION['u_daysleft']."</p>
+
+                            </div>
+                            ";
+                        }
                     }
                 }
                 else {

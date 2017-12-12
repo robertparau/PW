@@ -1,6 +1,7 @@
 <?php
 
-include_once 'connect.php'
+session_start();
+$_SESSION['message'] = '';
 
 ?>
 <head>
@@ -17,7 +18,7 @@ include_once 'connect.php'
 <div class="body-content">
   <div class="module">
     <h1>Create an account</h1>
-    <form class="form" action="register.php" method="post" enctype="multipart/form-data" autocomplete="off">
+    <form class="form" action="connect.php" method="post" enctype="multipart/form-data" autocomplete="off">
       <div class="alert alert-error"><?=$_SESSION['message'] ?></div>
       <input type="text" placeholder="User Name" name="username" required />
       <input type="email" placeholder="Email" name="email" required />

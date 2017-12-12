@@ -27,7 +27,10 @@ $_SESSION['message'] = '';
 					$_SESSION['u_email'] =$row['email'];
 					$_SESSION['u_phone'] =$row['phone'];
 					$_SESSION['u_cid'] =$row['Car_id']; 
-					header("location: success.php");
+					$_SESSION['u_daysleft'] =$row['days_left']; 
+
+					$_SESSION['message'] = 'Success ! You are now logged in';
+					header("location: redirect.php");
 					exit();
 				} else {
 					$_SESSION[ 'message' ] = "Wrong Password";

@@ -50,7 +50,7 @@ Although you can use them, for a more unique website, replace these images with 
             <div class="header-content-inner">
                 <h1>Driven by you.</h1>
                 <p>When you're ready, we're ready.</p>
-                <a href="#" class="btn btn-primary btn-lg">Rent Now</a>
+                <a href="rent.php" class="btn btn-primary btn-lg">Rent Now</a>
             </div>
         </div>
     </header>

@@ -43,6 +43,18 @@
                     </li>
                     <?php
 					if(isset($_SESSION['u_id'])) {
+                        if($_SESSION['u_id'] == 1)  {
+                            echo"
+                            <li class='dropdown'>
+                                <a href='#'' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Admin<span class='caret'></span></a>
+                                <ul class='dropdown-menu' aria-labelledby='about-us'>
+                                    <li><a href='addcar.php'>Add new cars</a></li>
+                                    <li><a href='listusers.php'>List all Users</a></li>
+                                    <li><a href='returncar.php'>Return a car</a></li>
+                                </ul>
+                            </li>
+                            ";  
+                        }
 						echo '<li>
                         <a href="logout.php">Logout</a>
                     </li>';
