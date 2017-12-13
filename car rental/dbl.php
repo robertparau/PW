@@ -27,7 +27,8 @@ $_SESSION['message'] = '';
 					$_SESSION['u_email'] =$row['email'];
 					$_SESSION['u_phone'] =$row['phone'];
 					$_SESSION['u_cid'] =$row['Car_id']; 
-					$_SESSION['u_daysleft'] =$row['days_left']; 
+					$_SESSION['s_date'] =$row['start_date']; 
+					$_SESSION['e_date'] =$row['end_date']; 
 
 					$_SESSION['message'] = 'Success ! You are now logged in';
 					header("location: redirect.php");

@@ -39,35 +39,54 @@ $_SESSION['message'] = '';
     ?>
     <header>
         <div class="header-content">
-        <table class="table-users" style="width:100%">
+        <?php
+        if (isset($_SESSION['u_id'])){
+            if($_SESSION['u_id'] == 1)
+            {
+            echo "
+            <table class='table-users' style='width:100%''>
             <tr>
                 <th>Username</th>
                 <th>User ID</th>
                 <th>Email</th> 
                 <th>Phone</th>
                 <th>Car</th>
-                <th>Days left for rent</th>
+                <th>Pick-up date</th>
+                <th>Return date</th>
             </tr>
-            <?php
+            ";
 
             $mysqli = new mysqli("localhost", "root", "", "rental");
-            $sql = "SELECT id, username, email, phone, days_left, Car_name FROM users, cars WHERE users.Car_id = cars.Car_id";
+            $sql = "SELECT id, username, email, phone, start_date, end_date, Car_name FROM users, cars WHERE users.Car_id = cars.Car_id";
             $result = $mysqli->query( $sql );
             while( $row = $result->fetch_assoc() ){
-                echo "
+                echo"
                 <tr>
                     <td>".$row['username']."</td>
                     <td>".$row['id']."</td> 
                     <td>".$row['email']."</td> 
                     <td>".$row['phone']."</td>
                     <td>".$row['Car_name']."</td>
-                    <td>".$row['days_left']."</td>
+                    <td>".$row['start_date']."</td>
+                    <td>".$row['end_date']."</td>
                 </tr>
                 ";
             }
-            ?>
-        
-        </table>
+            echo "</table>";
+
+        }
+        else
+        {
+            echo "<div class='alert alert-error'>Unauthorized access</div>
+            <meta http-equiv='refresh' content='2;url=http://localhost/pw/RentACar/'' />";
+
+        }
+    }
+    else
+    {
+        echo "<div class='alert alert-error'>Unauthorized access</div>
+        <meta http-equiv='refresh' content='2;url=http://localhost/pw/RentACar/'' />";
+    } ?>
         </div>
     </header>
 

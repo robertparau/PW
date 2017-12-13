@@ -39,20 +39,37 @@ $_SESSION['message'] = '';
   ?>
   <header>
     <div class="header-content">
-
       <div class="body-content">
-        <div class="module">
+      <?php
+      if (isset($_SESSION['u_id'])){
+            if($_SESSION['u_id'] == 1)
+            {
+            echo"
+        <div class='module'>
           <h1>Add a new car</h1>
-          <form class="form" action="connect2.php" method="post" enctype="multipart/form-data" autocomplete="off">
-            <div class="alert alert-error"><?=$_SESSION['message'] ?></div>
-            <input type="text" placeholder="Car Name" name="c_name" required />
-            <input type="text" placeholder="Car FE" name="c_fe" required />
-            <input type="text" placeholder="Car Seats" name="c_seats" required />
-            <input type="text" placeholder="Amount of cars" name="c_amount" required />
-            <div class="avatar"><label>Add car picture: </label><input type="file" name="c_pic" accept="image/*" required /></div>
-            <input type="submit" value="Add car" name="register" class="btn btn-block btn-primary" />
+          <form class='form' action='connect2.php' method='post' enctype='multipart/form-data' autocomplete='off'>
+            <div class='alert alert-error'>".$_SESSION['message']."</div>
+            <input type='text' placeholder='Car Name' name='c_name' required />
+            <input type='text' placeholder='Car FE' name='c_fe' required />
+            <input type='text' placeholder='Car Seats' name='c_seats' required />
+            <input type='text' placeholder='Amount of cars' name='c_amount' required />
+            <div class='avatar'><label>Add car picture: </label><input type='file' name='c_pic' accept='image/*' required /></div>
+            <input type='submit' value='Add car' name='register' class='btn btn-block btn-primary' />
           </form>
-        </div>
+        </div>";
+        }
+      else
+      {
+        echo "<div class='alert alert-error'>Unauthorized access</div>
+        <meta http-equiv='refresh' content='2;url=http://localhost/pw/RentACar/'' />";
+
+      }
+    }
+    else
+    {
+      echo "<div class='alert alert-error'>Unauthorized access</div>
+      <meta http-equiv='refresh' content='2;url=http://localhost/pw/RentACar/'' />";
+    } ?>
       </div>
     </div>
   </header>

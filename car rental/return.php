@@ -13,9 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 	if(mysqli_num_rows($result) > 0)
 	{
-    	$sql = "UPDATE users SET Car_id='0',days_left='-1' WHERE id='$user_id'";
-    	$_SESSION['u_cid'] = 0 ;
-		$_SESSION['u_daysleft'] =-1;
+    	$sql = "UPDATE users SET Car_id='0',start_date='0000-00-00',end_date='0000-00-00' WHERE id='$user_id'";
 		if ($mysqli->query($sql) === true){
 			$_SESSION['message'] = 'Success ! Car returned successfuly';
 			header( "location: redirect.php" );

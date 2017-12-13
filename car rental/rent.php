@@ -36,6 +36,7 @@ $_SESSION['message'] = '';
     <!-- Navigation -->
     <?php
     include_once('navbar.php');
+
     ?>
 
     <header>
@@ -51,6 +52,7 @@ $_SESSION['message'] = '';
                         }
                         $sql = "SELECT Car_name ,Car_id FROM cars WHERE amount > 0";
                         $result = $mysqli->query( $sql );
+
                         echo"                    
                         <div class='module'>
                         <h1>Rent a car</h1>
@@ -63,8 +65,11 @@ $_SESSION['message'] = '';
                         {
                             echo "<option value='".$row['Car_id']."'>".$row['Car_name']."</option>";
                         }
-                        echo"  </select>
-                        <input type='text' placeholder='Number of Days' name='days' required /><br /><br />
+                        echo"  </select><br /><br />
+                        Pick-up date:
+                        <input type='date' name='puday'><br /><br />
+                        Return date:
+                        <input type='date' name='retday'><br /><br />
                                 <input type='submit' value='Confirm' name='register' class='btn btn-primary btn-lg' />
                             </form>
                         </div>";
@@ -72,10 +77,10 @@ $_SESSION['message'] = '';
                     else
                     {
                         echo "
-                        <div class='alert alert-error'>Sorry, but you can only rent one car per account. For returning cars please contact the admin. Your current car is:</div>";
+                        <div class='alert alert-error'>Sorry, but you can only rent one car per account. For returning cars please contact the admin. Your current rented car is:</div>";
                         $cid=$_SESSION['u_cid'];
 
-                        $sql = "SELECT Car_name, Car_FE, Car_seats, Car_pic, amount FROM cars WHERE Car_id = $cid";
+                        $sql = "SELECT Car_name, Car_FE, Car_seats, Car_pic FROM cars WHERE Car_id = $cid";
                         $result = $mysqli->query( $sql );
                         while( $row = $result->fetch_assoc() )
                         {
@@ -84,7 +89,8 @@ $_SESSION['message'] = '';
                             <img src='".$row['Car_pic']."' alt='car image' width='300' height='200'>
                             </a>
                             <p>".$row['Car_name']."</p>
-                            <p>Days left:".$_SESSION['u_daysleft']."</p>
+                            <p>Pick-up date:<br />".$_SESSION['s_date']."</p>
+                            <p>Return date:<br />".$_SESSION['e_date']."</p>
 
                             </div>
                             ";

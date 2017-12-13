@@ -2,6 +2,7 @@
 
 session_start();
 $_SESSION['message'] = '';
+include_once('return.php');
 
 ?>
 <!DOCTYPE html>
@@ -39,17 +40,34 @@ $_SESSION['message'] = '';
   ?>
   <header>
     <div class="header-content">
-
-      <div class="body-content">
-        <div class="module">
+      <div class='body-content'>
+      <?php
+      if (isset($_SESSION['u_id'])){
+            if($_SESSION['u_id'] == 1)
+            {
+              echo"
+        <div class='module'>
           <h1>Return a car by User id</h1>
-          <form class="form" action="return.php" method="post" enctype="multipart/form-data" autocomplete="off">
-            <div class="alert alert-error"><?=$_SESSION['message'] ?></div>
-            <input type="text" placeholder="User ID" name="Uid" required />
-            <input type="submit" value="Mark car as returned" name="register" class="btn btn-block btn-primary" />
+          <form class='form' action='returncar.php' method='post' enctype='multipart/form-data' autocomplete='off'>
+            <div class='alert alert-error'>".$_SESSION['message'] ."</div>
+            <input type='text' placeholder='User ID' name='Uid' required />
+            <input type='submit' value='Mark car as returned' name='register' class='btn btn-block btn-primary' />
           </form>
-        </div>
-      </div>
+        </div>";
+      }
+      else
+      {
+        echo "<div class='alert alert-error'>Unauthorized access</div>
+        <meta http-equiv='refresh' content='2;url=http://localhost/pw/RentACar/'' />";
+
+      }
+    }
+    else
+    {
+      echo "<div class='alert alert-error'>Unauthorized access</div>
+      <meta http-equiv='refresh' content='2;url=http://localhost/pw/RentACar/'' />";
+    } ?>
+    </div>
     </div>
   </header>
   <!-- jQuery -->
